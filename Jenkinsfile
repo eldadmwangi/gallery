@@ -16,7 +16,7 @@ pipeline {
                 sh 'node --version'
             }
         }
-        stage('Clone this Repository') {
+        stage('Clone thiss Repository') {
             steps {
                 git branch: 'master', url: 'https://github.com/eldadmwangi/gallery.git'
             }
