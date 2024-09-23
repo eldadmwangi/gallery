@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Clone this Repository') {
             steps {
-                git branch: 'test-branch', url: 'https://github.com/eldadmwangi/gallery.git'
+                git branch: 'master', url: 'https://github.com/eldadmwangi/gallery.git'
             }
         }
         stage('Install npm Packages') {
