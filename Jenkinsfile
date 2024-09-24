@@ -3,6 +3,11 @@ pipeline {
     tools {
         nodejs 'nodejs'
     }
+    
+    // environment {
+    //     DEPLOY_HOOK_URL = 'https://api.render.com/deploy/srv-crojqld6l47c73foj10g?key=gX4-DTi_aYM'
+    // }
+
     environment {
         DEPLOY_HOOK_URL = 'https://api.render.com/deploy/srv-crojqld6l47c73foj10g?key=gX4-DTi_aYM'
         RENDER_API_KEY = credentials('render-api-key') // Store your Render API key in Jenkins credentials
@@ -69,6 +74,21 @@ pipeline {
                 }
             }
         }
+
+        stage('send message to slack'){
+                        steps{
+                            slackSend(
+                    botUser: true, 
+                    channel: 'C07N3T42A78', 
+                    color: '',  
+                    message: "Deployment successful! Build ID - ${env.BUILD_ID}. Check the deployed site: https://gallery-8ppb.onrender.com", 
+                    teamDomain: 'Student', 
+                    tokenCredentialId: 'jenkins-pipeline-test'
+                )
+
+                        }
+                    }
+
         stage('Run Application') {
             steps {
                 sh 'nohup node server.js &'
