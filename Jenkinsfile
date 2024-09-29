@@ -70,7 +70,7 @@ pipeline {
                         }'
                     """, returnStdout: true).trim()
                    
-                    echo "Deployment Response: ${response}"
+                    echo "Deployment Response:: ${response}"
                 }
             }
         }
